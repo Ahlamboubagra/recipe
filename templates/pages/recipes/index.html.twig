@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}symRecipe mes recipes{% endblock %}
+
+{% block body %}
+
+  
+
+ {% for message in app.flashes('success') %}
+    <div class=" alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<div class="container mt-4">
+<h1>mes recipes</h1>
+<div class="count">
+  <p> il ya{{ recipes.getTotalItemCount }} Recipes au total</p>
+</div>
+
+ <a href= "{{path('recipes.new')}}" class="btn btn-primary">Ajouter recipes</a>
+</hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Numero</th>
+      <th scope="col">name</th>
+      <th scope="col">time</th>
+      <th scope="col">nombre de personne</th>
+      <th scope="col">difficulte</th>
+<th scope="col">discription</th>
+<th scope="col">price</th>
+<th scope="col">isFavorite</th>
+      <th scope="col">createdAt</th>
+       <th scope="col">updatedAt</th>
+         <th scope="col">delet</th>
+         <th scope="col">edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+   <tr class="table-active">
+      <th scope="row">{{recipe.id}}</th>
+      <td>{{recipe.name}}</td>
+      <td>{{recipe.time}}</td>
+      <td>{{recipe.nbpersonne}}</td>
+      <td>{{recipe.difficulte}}</td>
+      <td>{{recipe.discription}}</td>
+      <td>{{recipe.price}}</td>
+       <td>{{recipe.isFavorite}}</td>
+      <td>{{recipe.createdAt|date("m/d/Y")}}</td>
+        <td>{{recipe.updatedAt|date("m/d/Y")}}</td>
+      <td><a href="{{ path('recipes.delet', {'id':recipe.id})}}"  class="btn btn-danger">supprimer</a></td>
+ <td><a href="{{ path('recipes.edit', {'id':recipe.id})}}"style="color: yellow;" class="btn btn-primary">Edit</a></td>
+
+      
+
+    </tr>
+{% endfor %}
+   
+   
+  </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    {{ knp_pagination_render(recipes) }}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+  {% block title %}
+SymRecipe - {{recipes.name}}
+
+  {% endblock %}
+   {% block body %}
+<div class="container">
+ {% for message in app.flashes('success') %}
+    <div class=" alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<h1 class="mt-4">{{recipes.name}}</h1>
+<div class="recipe_image">
+<img  style="max-width:100%;" src="{{vich_uploader_asset(recipes,'imageFile')}}"
+</div>
+
+<p>la moyene de cette recette es de {{recipes.average}}/5</p>
+<div><span  class="bdge bg-primary"> crée le {{recipes.createdAt|date("m/d/Y")}}</span></div>
+
+
+
+<div class="mt-4">{% if recipes.time %}
+<P> temps (en minute)
+{{recipes.time}}
+
+</p>
+{% else %}
+  temps non renseigne
+{% endif %}
+</div>
+
+
+
+
+<div class="mt-4">{% if recipes.nbpersonne %}
+<P> pour
+{{recipes.nbpersonne}} personnes
+</p>
+{% else %}
+  le nombre de personnes non renseigné
+{% endif %}
+</div>
+
+
+<div class="mt-4">{% if recipes.difficulte %}
+<P> Difficulte
+{{recipes.difficulte}}
+
+</p>
+{% else %}
+  Difficulte non renseigné
+{% endif %}</div>
+
+<div class="mt-4">{% if recipes.price %}
+<P>price
+{{recipes.price}}
+
+</p>
+{% else %}
+  prix non renseigné
+{% endif %}</div>
+
+
+<div class="mt-4">{% if recipes.discription %}
+<P>discription
+{{recipes.discription|raw}}
+
+</p>
+{% else %}
+  discription non renseigné
+{% endif %}</div>
+
+
+<div class="mt-4">   <p class="mt-4"> Ingredient</p>
+{% for ingredient in recipes.ingredient %}
+  <span class="badge bg-primary">{{ingredient.nom}}</span>
+{% endfor %}
+</div>
+</div>
+
+<div class="mark">
+ {{form(form)}}
+</div>
+
+
+
+
+
+  {% endblock %}

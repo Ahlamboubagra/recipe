@@ -1,0 +1,38 @@
+  {% extends 'base.html.twig' %}
+     {%  block body %}
+<div class="container mt-4">
+   <div class="p-4 shadow-4 rounded-3" style="background-color: transparent">
+  <h2 style="text-align: center"  >Bienvenue sur Sym</h2>
+  <p>
+SymRecipe is an application that will allow you to create recipes using ingredients that you have created yourself. You will be able to share your recipes with the site's community, or keep them private.
+
+  </p>
+
+  <hr class="my-4" />
+
+  <p>
+    pour commencer un rendez-vous sym sur la page d inscription pour utilse l application
+  </p>
+  <button type="button" class="btn btn-primary">
+    inscription
+  </button>
+</div>
+<div class="recipes">
+<h1>Recettes de la communuate</h1>
+<div class="d-flex justify-content-between">
+
+{% for recipe in recipes %}
+  <div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Recette nemero{{recipe.id}}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{recipe.name}}</h4>
+    <p class="card-text">{{recipe.discription|slice(0, 100)}}</p>
+  </div>
+</div>
+{% endfor %}
+
+</div>
+</div>
+</div>
+
+    {%  endblock %}
